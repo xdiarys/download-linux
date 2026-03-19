@@ -1,0 +1,80 @@
+{
+  "name": "calendartask-vscode",
+  "displayName": "CalendarTask",
+  "description": "Integrate CalendarTask web app into Visual Studio Code — manage your calendar and tasks without leaving your editor.",
+  "version": "1.0.0",
+  "publisher": "xdiarys",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "calendar",
+    "task",
+    "todo",
+    "schedule",
+    "xdiarys"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xdiarys/download-linux"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "calendartask.open",
+        "title": "Open CalendarTask",
+        "category": "CalendarTask",
+        "icon": "$(calendar)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "calendartask-sidebar",
+          "title": "CalendarTask",
+          "icon": "$(calendar)"
+        }
+      ]
+    },
+    "views": {
+      "calendartask-sidebar": [
+        {
+          "type": "webview",
+          "id": "calendartask.sidebarView",
+          "name": "CalendarTask"
+        }
+      ]
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "calendartask.open"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "calendartask.open",
+          "when": "view == calendartask.sidebarView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.19.0"
+  }
+}
